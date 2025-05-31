@@ -39,7 +39,7 @@ export function WorkspaceSwitcher({ workspaces }: Props) {
             >
               <div className="text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg">
                 <Image
-                  src={active?.image ?? PLACEHOLDER_IMAGE}
+                  src={active?.image || PLACEHOLDER_IMAGE}
                   alt="workspace image"
                   height={30}
                   width={30}
@@ -68,7 +68,7 @@ export function WorkspaceSwitcher({ workspaces }: Props) {
                 >
                   <div className="flex size-6 items-center justify-center rounded-sm border">
                     <Image
-                      src={workspace.image ?? PLACEHOLDER_IMAGE}
+                      src={workspace.image || PLACEHOLDER_IMAGE}
                       alt=""
                       height={30}
                       width={30}

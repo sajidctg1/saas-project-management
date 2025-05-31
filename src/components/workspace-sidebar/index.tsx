@@ -8,6 +8,7 @@ import {
   SidebarRail,
 } from "~/components/ui/sidebar";
 import { authClient } from "~/lib/auth-client";
+import { api } from "~/trpc/react";
 
 import { NavMain } from "./nav-main";
 import { NavProjects } from "./nav-projects";
@@ -19,11 +20,12 @@ export const WorkspaceSidebar = ({
   ...props
 }: React.ComponentProps<typeof Sidebar>) => {
   const { data } = authClient.useSession();
+  const { data: workspaces } = api.workspace.list.useQuery();
 
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <WorkspaceSwitcher workspaces={[]} />
+        <WorkspaceSwitcher workspaces={workspaces ?? []} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain />

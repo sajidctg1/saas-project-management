@@ -1,4 +1,4 @@
-import { eq } from "drizzle-orm";
+import { desc, eq } from "drizzle-orm";
 
 import { db, table } from "../db/drizzle";
 
@@ -18,6 +18,7 @@ export async function findWorkspaceById(id: Workspace["id"]) {
 export async function findWorkspacesByUserId(userId: Workspace["id"]) {
   return db.query.workspace.findMany({
     where: eq(table.workspace.userId, userId),
+    orderBy: desc(table.workspace.createdAt),
   });
 }
 

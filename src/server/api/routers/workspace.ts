@@ -1,6 +1,9 @@
 import { createWorkspaceSchema } from "~/features/workspace/schemas";
 import { createTRPCRouter, protectedProcedure } from "~/server/api/trpc";
-import { insertWorkspace } from "~/server/repositories/workspace-repository";
+import {
+  findWorkspacesByUserId,
+  insertWorkspace,
+} from "~/server/repositories/workspace-repository";
 
 export const generateInviteCode = () => {
   const characters =
@@ -26,4 +29,8 @@ export const workspaceRouter = createTRPCRouter({
         inviteCode: generateInviteCode(),
       });
     }),
+
+  list: protectedProcedure.query(async ({ ctx }) => {
+    return findWorkspacesByUserId(ctx.user.id);
+  }),
 });

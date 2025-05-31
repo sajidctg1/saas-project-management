@@ -2,7 +2,7 @@ import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 
 import { SignUpForm } from "~/features/auth/components/sign-up";
-import { UNVERIFIED_EMAIL_COOKIE, AUTH_URI } from "~/features/auth/constants";
+import { AUTH_URI, UNVERIFIED_EMAIL_COOKIE } from "~/features/auth/constants";
 
 export const metadata = {
   title: "Sign up",

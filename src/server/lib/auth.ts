@@ -20,12 +20,12 @@ export const auth = betterAuth({
       if (ctx.context.returned instanceof Error) return;
 
       if (ctx.path.includes(AUTH_URI.verifyEmail)) {
-        ctx.setCookie(UNVERIFIED_EMAIL_COOKIE, '', {
+        ctx.setCookie(UNVERIFIED_EMAIL_COOKIE, "", {
           httpOnly: true,
           maxAge: 0,
           secure: env.NODE_ENV === "production",
           path: "/",
-        })
+        });
       }
 
       if (ctx.path.startsWith(AUTH_URI.signUp)) {

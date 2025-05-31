@@ -1,6 +1,6 @@
 import Link from "next/link";
-import { SiteHeader } from "~/components/layout/site-header";
 
+import { SiteHeader } from "~/components/layout/site-header";
 import { Button } from "~/components/ui/button";
 import { AUTH_URI } from "~/features/auth/constants";
 import { getSession } from "~/server/helpers";
@@ -23,7 +23,8 @@ export default async function HomePage() {
 
             <p className="text-muted-foreground mx-auto mt-6 max-w-2xl text-base lg:text-lg">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsam,
-              laboriosam consequuntur! Molestiae enim eos laboriosam quia voluptas
+              laboriosam consequuntur! Molestiae enim eos laboriosam quia
+              voluptas
             </p>
 
             <div className="mt-6 flex items-center justify-center gap-4">

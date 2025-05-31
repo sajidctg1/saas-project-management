@@ -21,4 +21,4 @@ export const SiteHeader = () => {
       </Container>
     </header>
   );
-}
+};

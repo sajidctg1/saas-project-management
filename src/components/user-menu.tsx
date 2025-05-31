@@ -47,7 +47,11 @@ export const UserMenu = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="secondary" size="icon" className="rounded-full overflow-hidden">
+        <Button
+          variant="secondary"
+          size="icon"
+          className="overflow-hidden rounded-full"
+        >
           <UserAvatar src={user.image} alt={user.name} className="size-9" />
           <span className="sr-only">Toggle user menu</span>
         </Button>

@@ -25,7 +25,9 @@ export const WorkspaceSidebar = ({
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <WorkspaceSwitcher workspaces={workspaces ?? []} />
+        <WorkspaceSwitcher
+          workspaces={workspaces?.map((i) => i.workspace) ?? []}
+        />
       </SidebarHeader>
       <SidebarContent>
         <NavMain />

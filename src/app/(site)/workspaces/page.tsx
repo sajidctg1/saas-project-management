@@ -10,6 +10,6 @@ export default async function WorkspacesPage() {
   if (workspaces.length === 0) {
     redirect("/workspaces/create");
   } else {
-    redirect(`/workspaces/${workspaces[0]?.id}`);
+    redirect(`/workspaces/${workspaces[0]?.workspace.id}`);
   }
 }

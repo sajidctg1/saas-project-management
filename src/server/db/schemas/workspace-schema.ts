@@ -16,6 +16,22 @@ export const workspace = pgTable("workspace", {
 });
 
 export const workspaceRelations = relations(workspace, ({ many }) => ({
-  // tasks: many(projects),
-  // members: many(members),
+  members: many(member),
+}));
+
+export const member = pgTable("member", {
+  id: rowId(),
+  userId: uuid("userId")
+    .references(() => user.id, { onDelete: "set null" })
+    .notNull(),
+  workspaceId: uuid("workspaceId")
+    .references(() => workspace.id, { onDelete: "cascade" })
+    .notNull(),
+  role: text("role").$type<MemberRole>().notNull(),
+});
+export const memberRelations = relations(member, ({ one }) => ({
+  workspace: one(workspace, {
+    fields: [member.workspaceId],
+    references: [workspace.id],
+  }),
 }));

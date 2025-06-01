@@ -1,11 +1,11 @@
 import { redirect } from "next/navigation";
 
 import { authenticate } from "~/server/helpers";
-import { findWorkspacesByUserId } from "~/server/repositories/workspace-repository";
+import { findWorkspacesOfUser } from "~/server/repositories/workspace-repository";
 
 export default async function WorkspacesPage() {
   const { user } = await authenticate();
-  const workspaces = await findWorkspacesByUserId(user.id);
+  const workspaces = await findWorkspacesOfUser(user.id);
 
   if (workspaces.length === 0) {
     redirect("/workspaces/create");

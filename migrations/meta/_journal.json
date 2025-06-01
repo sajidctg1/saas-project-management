@@ -15,6 +15,13 @@
       "when": 1748702055064,
       "tag": "0001_create-workspace-table",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1748751844311,
+      "tag": "0002_create-workspace-member-table",
+      "breakpoints": true
     }
   ]
 }

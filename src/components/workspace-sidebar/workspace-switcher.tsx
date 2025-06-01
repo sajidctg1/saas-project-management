@@ -18,6 +18,7 @@ import {
   SidebarMenuItem,
 } from "~/components/ui/sidebar";
 import { PLACEHOLDER_IMAGE } from "~/constants";
+import { useCreateWorkspaceModal } from "~/features/workspace/hooks/use-create-workspace-modal";
 import { useWorkspaceId } from "~/features/workspace/hooks/use-workspace-id";
 
 interface Props {
@@ -26,6 +27,7 @@ interface Props {
 
 export function WorkspaceSwitcher({ workspaces }: Props) {
   const workspaceId = useWorkspaceId();
+  const { setIsOpen } = useCreateWorkspaceModal();
   const active = workspaces.find((i) => i.id === workspaceId);
 
   return (
@@ -79,7 +81,10 @@ export function WorkspaceSwitcher({ workspaces }: Props) {
               </DropdownMenuItem>
             ))}
             <DropdownMenuSeparator />
-            <DropdownMenuItem className="gap-2 p-2">
+            <DropdownMenuItem
+              className="gap-2 p-2"
+              onClick={() => setIsOpen(true)}
+            >
               <div className="bg-background flex size-6 items-center justify-center rounded-md border">
                 <Plus className="size-4" />
               </div>

@@ -8,6 +8,7 @@ import {
 } from "~/components/ui/sidebar";
 import { WorkspaceSidebar } from "~/components/workspace-sidebar/index";
 import { KBar } from "~/components/workspace-sidebar/kbar";
+import { CreateWorkspaceModal } from "~/features/workspace/components/create-workspace-modal";
 import { constructMetadata } from "~/lib/construct-metadata";
 import { authenticate } from "~/server/helpers";
 import { findWorkspaceById } from "~/server/repositories/workspace-repository";
@@ -45,6 +46,7 @@ export default async function WorkspaceLayout(props: Props) {
             </div>
           </header>
           <div className="@container/main">{props.children}</div>
+          <CreateWorkspaceModal />
         </SidebarInset>
       </SidebarProvider>
     </KBar>

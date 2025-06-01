@@ -31,7 +31,7 @@ export const workspaceRouter = createTRPCRouter({
   create: protectedProcedure
     .input(createWorkspaceSchema)
     .mutation(async ({ ctx, input }) => {
-      const now = new Date()
+      const now = new Date();
       const workspace: Workspace = {
         id: crypto.randomUUID(),
         userId: ctx.user.id,
@@ -41,13 +41,13 @@ export const workspaceRouter = createTRPCRouter({
         desc: input.desc ?? null,
         createdAt: now,
         updatedAt: now,
-      }
+      };
       const member: Member = {
         id: crypto.randomUUID(),
         workspaceId: workspace.id,
         userId: ctx.user.id,
-        role: 'ADMIN',
-      }
+        role: "ADMIN",
+      };
 
       await insertWorkspace(workspace, member);
 
@@ -57,4 +57,37 @@ export const workspaceRouter = createTRPCRouter({
   list: protectedProcedure.query(async ({ ctx }) => {
     return findWorkspacesOfUser(ctx.user.id);
   }),
+
+  update: protectedProcedure
+    .input(updateWorkspaceSchema)
+    .mutation(async ({ ctx, input }) => {
+      if (!(await isWorkspaceOwner(ctx.user.id, input.workspaceId))) {
+        throw new TRPCError({ code: "NOT_FOUND" });
+      }
+      return updateWorkspace(input.workspaceId, {
+        name: input.name,
+        image: input.image,
+        desc: input.desc,
+      });
+    }),
+
+  delete: protectedProcedure
+    .input(z.object({ workspaceId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      if (!(await isWorkspaceOwner(ctx.user.id, input.workspaceId))) {
+        throw new TRPCError({ code: "NOT_FOUND" });
+      }
+      return deleteWorkspace(input.workspaceId);
+    }),
+
+  resetInviteCode: protectedProcedure
+    .input(z.object({ workspaceId: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      if (!(await isWorkspaceOwner(ctx.user.id, input.workspaceId))) {
+        throw new TRPCError({ code: "NOT_FOUND" });
+      }
+      return updateWorkspace(input.workspaceId, {
+        inviteCode: generateInviteCode(),
+      });
+    }),
 });

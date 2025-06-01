@@ -20,7 +20,7 @@ export const projectRouter = createTRPCRouter({
       return insertProject({
         workspaceId: input.workspaceId,
         name: input.name,
-        image: input.image,
+        desc: input.desc,
       });
     }),
 
@@ -38,7 +38,7 @@ export const projectRouter = createTRPCRouter({
       }
       return updateProject(input.projectId, {
         name: input.name,
-        image: input.image,
+        desc: input.desc,
       });
     }),
 });

@@ -24,19 +24,26 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "~/components/ui/sidebar";
+import { useCreateProjectModal } from "~/features/project/hooks/use-create-project-modal";
 
 import { Button } from "../ui/button";
 
 const projects: NavItem[] = [];
 
 export const NavProjects = () => {
+  const { setIsOpen } = useCreateProjectModal();
   const { isMobile } = useSidebar();
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
       <SidebarGroupLabel className="justify-between">
         Projects
-        <Button variant={"ghost"} size={"icon"} className="size-8">
+        <Button
+          variant={"ghost"}
+          size={"icon"}
+          className="size-8"
+          onClick={() => setIsOpen(true)}
+        >
           <PlusIcon />
         </Button>
       </SidebarGroupLabel>

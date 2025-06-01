@@ -1,6 +1,12 @@
 "use client";
 
-import { FolderIcon, MoreHorizontal, ShareIcon, TrashIcon } from "lucide-react";
+import {
+  FolderIcon,
+  MoreHorizontal,
+  PlusIcon,
+  ShareIcon,
+  TrashIcon,
+} from "lucide-react";
 
 import {
   DropdownMenu,
@@ -19,6 +25,8 @@ import {
   useSidebar,
 } from "~/components/ui/sidebar";
 
+import { Button } from "../ui/button";
+
 const projects: NavItem[] = [];
 
 export const NavProjects = () => {
@@ -26,7 +34,12 @@ export const NavProjects = () => {
 
   return (
     <SidebarGroup className="group-data-[collapsible=icon]:hidden">
-      <SidebarGroupLabel>Projects</SidebarGroupLabel>
+      <SidebarGroupLabel className="justify-between">
+        Projects
+        <Button variant={"ghost"} size={"icon"} className="size-8">
+          <PlusIcon />
+        </Button>
+      </SidebarGroupLabel>
       <SidebarMenu>
         {projects.map((item) => (
           <SidebarMenuItem key={item.title}>

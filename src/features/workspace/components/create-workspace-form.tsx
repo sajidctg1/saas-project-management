@@ -22,7 +22,7 @@ export const CreateWorkspaceForm = () => {
 
   const handleSubmit = (data: CreateWorkspacePayload) => {
     mutate(data, {
-      onSuccess: () => router.replace("/workspaces"),
+      onSuccess: (res) => router.push(`/workspaces/${res.id}`),
     });
   };
 
@@ -30,9 +30,7 @@ export const CreateWorkspaceForm = () => {
     <GenericForm {...form} onSubmit={handleSubmit}>
       <FormInput name="name" />
       <FormInput name="desc" type="textarea" />
-      <ButtonLoading loading={isPending} className="w-full">
-        create
-      </ButtonLoading>
+      <ButtonLoading loading={isPending}>create</ButtonLoading>
     </GenericForm>
   );
 };

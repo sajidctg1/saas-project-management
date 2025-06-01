@@ -25,5 +25,11 @@ declare global {
     }
   >;
 
+  type User = typeof table.user.$inferSelect;
+
   type Workspace = typeof table.workspace.$inferSelect;
+  type Member = typeof table.member.$inferSelect;
+  type MemberRole = "ADMIN" | "MEMBER";
+
+  type Project = typeof table.project.$inferSelect;
 }

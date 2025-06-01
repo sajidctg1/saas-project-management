@@ -1,5 +1,6 @@
 import { createCallerFactory, createTRPCRouter } from "~/server/api/trpc";
 
+import { projectRouter } from "./routers/project";
 import { userRouter } from "./routers/user";
 import { workspaceRouter } from "./routers/workspace";
 
@@ -11,6 +12,7 @@ import { workspaceRouter } from "./routers/workspace";
 export const appRouter = createTRPCRouter({
   user: userRouter,
   workspace: workspaceRouter,
+  project: projectRouter,
 });
 
 // export type definition of API
